@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   View,
+  ScrollView,
 } from "react-native";
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.gapContainer}>
+        <ScrollView>
           <Text>List of goals</Text>
           {goals.map((goal) => (
             <View style={styles.goalItem}>
@@ -38,6 +40,7 @@ export default function App() {
               </Text>
             </View>
           ))}
+        </ScrollView>
       </View>
     </View>
   );
