@@ -2,11 +2,11 @@ import { useState } from "react";
 import {
   Button,
   StyleSheet,
-  Text,
   TextInput,
   View,
   FlatList,
 } from "react-native";
+import GoalItem from "./components/GoalItem";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -33,14 +33,12 @@ export default function App() {
         />
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
-      <View style={styles.gapContainer}>
+      <View style={styles.goalContainer}>
         <FlatList
           data={goals}
           renderItem={(data) => {
             return (
-              <View style={styles.goalItem}>
-                <Text style={styles.goalText}>{data.item.text}</Text>
-              </View>
+              <GoalItem />
             );
           }}
           alwaysBounceVertical={false}
@@ -72,16 +70,7 @@ const styles = StyleSheet.create({
     width: "70%",
     marginRight: 8,
   },
-  gapContainer: {
+  goalContainer: {
     flex: 4,
-  },
-  goalItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: "blue",
-  },
-  goalText: {
-    color: "white",
   },
 });
