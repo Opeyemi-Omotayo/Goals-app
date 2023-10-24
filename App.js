@@ -20,11 +20,12 @@ export default function App() {
       ...currentGoals,
       { text: enteredGoal, key: Math.random().toString() },
     ]);
+    setEnteredGoal("");
   };
 
   return (
     <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalHandler} onInputHandler={goalInputHandler}/>
+      <GoalInput onAddGoal={addGoalHandler} onInputHandler={goalInputHandler} enteredGoal={enteredGoal}/>
       <View style={styles.goalContainer}>
         <FlatList
           data={goals}
