@@ -2,7 +2,7 @@ import { useState } from "react";
 import {
   StyleSheet,
   View,
-  FlatList,
+  FlatList
 } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
@@ -16,12 +16,19 @@ export default function App() {
   };
 
   const addGoalHandler = () => {
+    setEnteredGoal("");
     setGoals((currentGoals) => [
       ...currentGoals,
       { text: enteredGoal, key: Math.random().toString() },
     ]);
-    setEnteredGoal("");
   };
+
+  const deleteGoalHandler = (id) => {
+    setGoals((currentGoals) => {
+      return currentGoals.filter((goal) => goal.key !== id);
+    });
+  };
+  
 
   return (
     <View style={styles.appContainer}>
@@ -31,7 +38,7 @@ export default function App() {
           data={goals}
           renderItem={(data) => {
             return (
-              <GoalItem text={data.item.text}/>
+              <GoalItem text={data.item.text} id={data.item.id} onDelete={deleteGoalHandler}/>
             );
           }}
           alwaysBounceVertical={false}

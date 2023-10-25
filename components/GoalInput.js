@@ -1,6 +1,6 @@
 import { StyleSheet, View, TextInput, Button } from "react-native";
 
-const GoalInput = (props) => {
+function GoalInput(props){
   return (
     <View style={styles.inputContainer}>
     <TextInput
