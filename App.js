@@ -43,7 +43,7 @@ export default function App() {
         {!openModal && (
           <Button
             title="Add New Goal"
-            color="#b180f0"
+            color="dodgerblue"
             onPress={startAddGoalHandler}
           />
         )}
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 20,
-    backgroundColor: "#1e085a",
+    backgroundColor: "cornflowerblue",
   },
   goalContainer: {
     flex: 4,
