@@ -12,6 +12,10 @@ export default function App() {
     setOpenModal(true);
   };
 
+  const endAddGoalHandler = () => {
+    setOpenModal(false);
+  };
+
   const goalInputHandler = (enteredText) => {
     setEnteredGoal(enteredText);
   };
@@ -22,6 +26,7 @@ export default function App() {
       ...currentGoals,
       { text: enteredGoal, key: Math.random().toString() },
     ]);
+    endAddGoalHandler();
   };
 
   const deleteGoalHandler = (id) => {
@@ -44,6 +49,7 @@ export default function App() {
         onInputHandler={goalInputHandler}
         enteredGoal={enteredGoal}
         visible={openModal}
+        onCancel={endAddGoalHandler}
       />
       <View style={styles.goalContainer}>
         <FlatList
