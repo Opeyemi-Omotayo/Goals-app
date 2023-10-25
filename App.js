@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { StyleSheet, View, FlatList, Button} from "react-native";
+import { StyleSheet, View, FlatList, Button } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -36,37 +37,40 @@ export default function App() {
   };
 
   return (
-    <View style={styles.appContainer}>
-      {!openModal && (
-        <Button
-          title="Add New Goal"
-          color="blue"
-          onPress={startAddGoalHandler}
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        {!openModal && (
+          <Button
+            title="Add New Goal"
+            color="#b180f0"
+            onPress={startAddGoalHandler}
+          />
+        )}
+        <GoalInput
+          onAddGoal={addGoalHandler}
+          onInputHandler={goalInputHandler}
+          enteredGoal={enteredGoal}
+          visible={openModal}
+          onCancel={endAddGoalHandler}
         />
-      )}
-      <GoalInput
-        onAddGoal={addGoalHandler}
-        onInputHandler={goalInputHandler}
-        enteredGoal={enteredGoal}
-        visible={openModal}
-        onCancel={endAddGoalHandler}
-      />
-      <View style={styles.goalContainer}>
-        <FlatList
-          data={goals}
-          renderItem={(data) => {
-            return (
-              <GoalItem
-                text={data.item.text}
-                id={data.item.id}
-                onDelete={deleteGoalHandler}
-              />
-            );
-          }}
-          alwaysBounceVertical={false}
-        />
+        <View style={styles.goalContainer}>
+          <FlatList
+            data={goals}
+            renderItem={(data) => {
+              return (
+                <GoalItem
+                  text={data.item.text}
+                  id={data.item.id}
+                  onDelete={deleteGoalHandler}
+                />
+              );
+            }}
+            alwaysBounceVertical={false}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -75,6 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 20,
+    backgroundColor: "#1e085a",
   },
   goalContainer: {
     flex: 4,
